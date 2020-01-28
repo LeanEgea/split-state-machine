@@ -1,6 +1,10 @@
 package state
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/mercadolibre/state-machine-split/utils"
+)
 
 type ActivePaid struct {
 	MoneySplit *MoneySplit
@@ -35,4 +39,8 @@ func (a *ActivePaid) canClose() error {
 	split := a.MoneySplit
 	split.setState(split.Closed)
 	return nil
+}
+
+func (a *ActivePaid) stateName() string {
+	return utils.ActivePaid
 }

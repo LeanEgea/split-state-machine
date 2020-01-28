@@ -23,12 +23,12 @@ type MoneySplit struct {
 //con la cantidad de detalles obtenidos y segun el estado de cada uno llama a NewMoneySplit(totalMembers int, paidMembers int, rejectedMembers)
 //seteandole un estado
 
-func NewMoneySplit(totalMembers int, paidMembers int) *MoneySplit {
+func NewMoneySplit(totalMembers int, paidMembers int, rejectedMembers int) *MoneySplit {
 	//TODO: validar que los totalMemberssean mas que los paidMembers
 	split := &MoneySplit{
 		TotalMembers:    totalMembers,
 		PaidMembers:     paidMembers,
-		RejectedMembers: 0,
+		RejectedMembers: rejectedMembers,
 	}
 	pending := &Pending{
 		MoneySplit: split,
@@ -77,6 +77,10 @@ func (split *MoneySplit) CanReject() error {
 
 func (split *MoneySplit) CanClose() error {
 	return split.CurrentState.canClose()
+}
+
+func (split *MoneySplit) State() string {
+	return split.CurrentState.stateName()
 }
 
 func (split *MoneySplit) setState(s State) {

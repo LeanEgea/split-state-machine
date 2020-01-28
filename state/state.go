@@ -1,8 +1,8 @@
 package state
 
 type State interface {
-	canPay() error //ver un nombre mejor
+	canPay() error
 	canReject() error
 	canClose() error
-	// Meter una funcion o atributo que te devuelva el nombre
+	stateName() string
 }
