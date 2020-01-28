@@ -1,8 +1,8 @@
 package state
 
 type State interface {
-	PaySplit() error
-	RejectSplit() error
-	CloseSplit() error
+	canPay() error //ver un nombre mejor
+	canReject() error
+	canClose() error
 	// Meter una funcion o atributo que te devuelva el nombre
 }

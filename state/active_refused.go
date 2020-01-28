@@ -6,37 +6,33 @@ type ActiveRefused struct {
 	MoneySplit *MoneySplit
 }
 
-func (a *ActiveRefused) PaySplit() error {
+func (a *ActiveRefused) canPay() error {
 	split := a.MoneySplit
 	if split.TotalMembers > (split.PaidMembers + split.RejectedMembers + 1) {
-		split.IncrementPaidMembers()
-		split.SetState(split.Active)
+		split.setState(split.Active)
 		return nil
 	} else if split.TotalMembers == (split.PaidMembers + split.RejectedMembers + 1) {
-		split.IncrementPaidMembers()
-		split.SetState(split.Finished)
+		split.setState(split.Finished)
 		return nil
 	} else {
 		return fmt.Errorf("Can't pay the split(active_refused)")
 	}
 }
 
-func (a *ActiveRefused) RejectSplit() error {
+func (a *ActiveRefused) canReject() error {
 	split := a.MoneySplit
 	if split.TotalMembers > (split.PaidMembers + split.RejectedMembers + 1) {
-		split.IncrementRejectedMembers()
 		return nil
 	} else if split.TotalMembers == (split.PaidMembers + split.RejectedMembers + 1) {
-		split.IncrementRejectedMembers()
-		split.SetState(split.Refused)
+		split.setState(split.Refused)
 		return nil
 	} else {
 		return fmt.Errorf("Can't reject the split(active_refused)")
 	}
 }
 
-func (a *ActiveRefused) CloseSplit() error {
+func (a *ActiveRefused) canClose() error {
 	split := a.MoneySplit
-	split.SetState(split.Closed)
+	split.setState(split.Closed)
 	return nil
 }

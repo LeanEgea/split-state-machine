@@ -6,14 +6,14 @@ type Paid struct {
 	MoneySplit *MoneySplit
 }
 
-func (p *Paid) PaySplit() error {
+func (p *Paid) canPay() error {
 	return fmt.Errorf("The split is already paid")
 }
 
-func (p *Paid) RejectSplit() error {
+func (p *Paid) canReject() error {
 	return fmt.Errorf("The split is already paid")
 }
 
-func (p *Paid) CloseSplit() error {
+func (p *Paid) canClose() error {
 	return fmt.Errorf("The split is already paid")
 }

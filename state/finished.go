@@ -6,14 +6,14 @@ type Finished struct {
 	MoneySplit *MoneySplit
 }
 
-func (f *Finished) PaySplit() error {
+func (f *Finished) canPay() error {
 	return fmt.Errorf("The split is already finished")
 }
 
-func (f *Finished) RejectSplit() error {
+func (f *Finished) canReject() error {
 	return fmt.Errorf("The split is already finished")
 }
 
-func (f *Finished) CloseSplit() error {
+func (f *Finished) canClose() error {
 	return fmt.Errorf("The split is already finished")
 }

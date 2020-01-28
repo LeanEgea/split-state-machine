@@ -10,31 +10,31 @@ import (
 func main() {
 	fmt.Println("New split")
 	moneySplit := state.NewMoneySplit(5, 1)
-	err := moneySplit.PaySplit()
+	err := moneySplit.CanPay()
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
-	// err = moneySplit.CloseSplit()
+	err = moneySplit.CanClose()
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
+	err = moneySplit.CanPay()
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
+	err = moneySplit.CanPay()
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
+	err = moneySplit.CanPay()
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
+	// err = moneySplit.CanClose()
 	// if err != nil {
 	// 	log.Fatalf(err.Error())
 	// }
-	err = moneySplit.PaySplit()
-	if err != nil {
-		log.Fatalf(err.Error())
-	}
-	err = moneySplit.PaySplit()
-	if err != nil {
-		log.Fatalf(err.Error())
-	}
-	err = moneySplit.PaySplit()
-	if err != nil {
-		log.Fatalf(err.Error())
-	}
-	// err = moneySplit.CloseSplit()
-	// if err != nil {
-	// 	log.Fatalf(err.Error())
-	// }
-	err = moneySplit.PaySplit()
+	err = moneySplit.CanPay()
 	if err != nil {
 		log.Fatalf(err.Error())
 	}

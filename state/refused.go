@@ -6,14 +6,14 @@ type Refused struct {
 	MoneySplit *MoneySplit
 }
 
-func (r *Refused) PaySplit() error {
+func (r *Refused) canPay() error {
 	return fmt.Errorf("The split is already rejected")
 }
 
-func (r *Refused) RejectSplit() error {
+func (r *Refused) canReject() error {
 	return fmt.Errorf("The split is already rejected")
 }
 
-func (r *Refused) CloseSplit() error {
+func (r *Refused) canClose() error {
 	return fmt.Errorf("The split is already rejected")
 }
